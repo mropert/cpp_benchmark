@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 3.10)
+project(cpp_benchmark)
+
+include_directories(include)
+
+add_executable(machine src/machine.cpp)
+add_executable(stepanov_abstraction src/stepanov_abstraction.cpp)
+add_executable(stepanov_vector src/stepanov_vector.cpp)
+add_executable(loop_unroll src/loop_unroll.cpp)
+add_executable(simple_types_loop_invariant src/simple_types_loop_invariant.cpp)
+add_executable(functionobjects src/functionobjects.cpp)
+add_executable(simple_types_constant_folding src/simple_types_constant_folding.cpp)
+
+enable_testing()
+add_test(NAME report_machine COMMAND machine)
+add_test(NAME report_stepanov_abstraction COMMAND stepanov_abstraction)
+add_test(NAME report_stepanov_vector COMMAND stepanov_vector)
+add_test(NAME report_loop_unroll COMMAND loop_unroll)
+add_test(NAME report_simple_types_loop_invariant COMMAND simple_types_loop_invariant)
+add_test(NAME report_functionobjects COMMAND functionobjects)
+add_test(NAME report_simple_types_constant_folding COMMAND simple_types_constant_folding)
