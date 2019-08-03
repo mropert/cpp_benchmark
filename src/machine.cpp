@@ -78,12 +78,10 @@ void ReportCompiler()
 
 	printf("Microsoft VisualC++ version %d\n", _MSC_VER );
 	
-	#if defined(__WIN32__) || defined(_WIN32)
-		printf("Compiling for Windows 32 bit\n" );
-	#endif
-	
-	#if __WIN64__
+	#if defined(_WIN64)
 		printf("Compiling for Windows 64 bit\n" );
+	#elif defined(_WIN32)
+		printf("Compiling for Windows 32 bit\n");
 	#endif
 	
 	#if defined(__CLR_VER)
@@ -130,43 +128,6 @@ void ReportCompiler()
 	printf("********\n" );
 	printf("Unknown compiler, please update %s for your compiler\n", __FILE__ );
 	printf("********\n" );
-#endif
-
-}
-
-/******************************************************************************/
-
-// these seem to be available on most current Mach derived OSes
-// TODO - ccox - disabled because some Linux distros have incomplete sets of headers
-#if 0 && defined(_MACHTYPES_H_)
-// if the headers are not present, these includes will break
-// then the macro test above and the report below need to be updated
-#include <tr1/unordered_map>
-#include <tr1/unordered_set>
-#endif
-
-#if defined(_MSC_VER)
-#include <hash_map>
-#include <hash_set>
-#endif
-
-
-// STL and optional bits
-void ReportHeaders() 
-{
-
-#if defined(_MACHTYPES_H_)
-
-	printf("Includes preliminary TR1 unordered_map\n");
-	printf("Includes preliminary TR1 unordered_set\n");
-	printf("Includes preliminary TR1 unordered_multimap\n");
-	printf("Includes preliminary TR1 unordered_multiset\n");
-
-#endif
-
-#if defined(_MSC_VER)
-	printf("Includes preliminary TR1 hash_set\n");
-	printf("Includes preliminary TR1 hash_map\n");
 #endif
 
 }
